@@ -15,4 +15,4 @@ This Script was made in order to simplify the process of plotting graphics using
 
   * Check your graphs in the images folder
 
-Read the documents in the "Documentação" folder for more Help
+Read the documents in the "Documentacao" folder for more Help
