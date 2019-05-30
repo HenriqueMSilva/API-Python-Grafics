@@ -1,0 +1,574 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <title>Parser Graficos Python &#8212; Documentação projetosfinx hj</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Pesquisar" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentação projetosfinx hj</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="parser-graficos-python">
+<h1>Parser Graficos Python<a class="headerlink" href="#parser-graficos-python" title="Link permanente para este título">¶</a></h1>
+<span class="target" id="module-DoGraf"></span><p>Faz o parssing de um ficheiro «graf.conf e gera e guarda graficos de varios plots</p>
+<dl class="function">
+<dt id="DoGraf.atualiza_value_tick">
+<code class="descclassname">DoGraf.</code><code class="descname">atualiza_value_tick</code><span class="sig-paren">(</span><em>numero</em>, <em>yloc</em>, <em>yticks</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.atualiza_value_tick" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Calculamos qual é o valor que escrevemos no topo da barra do <code class="docutils literal notranslate"><span class="pre">plt.bar</span></code> ou <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>numero</strong> (<em>float</em>) – numero a transformar</p></li>
+<li><p><strong>yloc</strong> (<em>list of float</em>) – localização dos ticks do axis-y</p></li>
+<li><p><strong>yticks</strong> (<em>list of float</em>) – valores dos ticks do axis-y</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>novo valor para o numero</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.custom">
+<code class="descclassname">DoGraf.</code><code class="descname">custom</code><span class="sig-paren">(</span><em>c</em>, <em>folder_name</em>, <em>dirFiles</em>, <em>dirImagens</em>, <em>grafs</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.custom" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Função vai ser chamada para cada diretoria que existe no .conf .
+Vai verificar que tipo de graficos temos para criar e chama a função <code class="docutils literal notranslate"><span class="pre">customAuxiliar</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">=</span> <span class="pre">{'Hist':</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> 
+<span class="pre">'range(4)','Specs':</span> <span class="pre">{}},</span> <span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':etc</span></code></p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Nome do diretoria que vamos fazer os graficos Ex: <code class="docutils literal notranslate"><span class="pre">folder_name</span> <span class="pre">=</span> <span class="pre">barrasTeste.2</span></code></p></li>
+<li><p><strong>dirFiles</strong> (<em>str</em>) – Path para a diretoria do ficheiros que tem valores dos graficos</p></li>
+<li><p><strong>dirImages</strong> (<em>str</em>) – Path para a diretoria onde as pastas dos graficos vao ser guardados</p></li>
+<li><p><strong>grafs</strong> (<em>list of str</em>) – lista que contem os tipos de graficos que conseguimos criar Ex: <code class="docutils literal notranslate"><span class="pre">grafs</span> <span class="pre">=</span> <span class="pre">[&quot;Linhas&quot;,</span> <span class="pre">&quot;Barras&quot;,</span> <span class="pre">&quot;Hist&quot;]</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.customAuxiliar">
+<code class="descclassname">DoGraf.</code><code class="descname">customAuxiliar</code><span class="sig-paren">(</span><em>files</em>, <em>tipoGrafico</em>, <em>c</em>, <em>folder_name</em>, <em>dirFiles</em>, <em>dirImagens</em>, <em>grafs</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.customAuxiliar" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>vai verificar se nao temos combinações invalidas de especificaçoes nos .conf Ex:»separa» = True e «ladoAlado» = True</p>
+<p>vai correr funçoes auxiliares (<code class="docutils literal notranslate"><span class="pre">devolvePropriedades()</span></code>) enquanto temos acesso aos valores de todos os ficheiros</p>
+<p>vai averiguar se foi especificado fazer plot dos graficos todos ou só de alguns e se estes vao aparecer na mesma <code class="docutils literal notranslate"><span class="pre">plt.figura()</span></code> 
+ou em <code class="docutils literal notranslate"><span class="pre">plt.figura()</span></code> diferentes. 
+Chamamos assim uma destas funçoes <code class="docutils literal notranslate"><span class="pre">ficheiros_separados(),</span> <span class="pre">ficheiros_juntos(),</span> <span class="pre">tudo_separado(),</span> <span class="pre">tudo_juntos()</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files</strong> (<em>list of str</em>) – nomes dos ficheiros que vamos usar para criar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">files</span> <span class="pre">=</span> <span class="pre">['timenewformulation2.txt',</span> <span class="pre">'timenewformulation0.txt',</span> <span class="pre">'timenewformulation1.txt']</span></code></p></li>
+<li><p><strong>tipoGrafico</strong> (<em>str</em>) – ajudanos a saber que tipo de grafico vamos criar. Ex: `` tipoGrafico = «Linhas»``</p></li>
+<li><p><strong>c</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">=</span> <span class="pre">{'Hist':</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> 
+<span class="pre">'range(4)','Specs':</span> <span class="pre">{}},</span> <span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':etc</span></code></p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Nome do diretoria que vamos fazer os graficos Ex: <code class="docutils literal notranslate"><span class="pre">folder_name</span> <span class="pre">=</span> <span class="pre">barrasTeste.2</span></code></p></li>
+<li><p><strong>dirFiles</strong> (<em>str</em>) – Path para a diretoria do ficheiros que tem valores dos graficos</p></li>
+<li><p><strong>dirImages</strong> (<em>str</em>) – Path para a diretoria onde as pastas dos graficos vao ser guardados</p></li>
+<li><p><strong>grafs</strong> (<em>list of str</em>) – lista que contem os tipos de graficos que conseguimos criar Ex: <code class="docutils literal notranslate"><span class="pre">grafs</span> <span class="pre">=</span> <span class="pre">[&quot;Linhas&quot;,</span> <span class="pre">&quot;Barras&quot;,</span> <span class="pre">&quot;Hist&quot;]</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>-1 caso existam erros, 0 caso contrario</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.desenho">
+<code class="descclassname">DoGraf.</code><code class="descname">desenho</code><span class="sig-paren">(</span><em>tipoGrafico</em>, <em>x</em>, <em>dicio</em>, <em>confTipoGrafico</em>, <em>i</em>, <em>numFiles</em>, <em>numPilares</em>, <em>especificacoes</em>, <em>fileName</em>, <em>minY</em>, <em>maxY</em>, <em>bar_empilha</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.desenho" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Vai tratar dos aspetos do «desenho» do grafico (cor, edgecolor, valores no topo das Barras, Hist-bins) ; tambem colocamos aqui os yticks para ficarmos com os valores que vao
+aparecer no y-axis e podermos ajustar os valores que poderam aparecer no topo das tabelas dos plt.bar e plt.hist()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tipoGrafico</strong> (<em>str</em>) – ajudanos a saber que tipo de grafico vamos criar. Ex: `` tipoGrafico = «Linhas»``</p></li>
+<li><p><strong>x</strong> (<em>np array</em>) – array com os valores que formam os graficos</p></li>
+<li><p><strong>dicio</strong> (<em>dict</em>) – especificacoes para o grafico (que normalmente entram em plt.plot()/bar()/hist() ) Ex: <code class="docutils literal notranslate"><span class="pre">dicio</span> <span class="pre">=</span> <span class="pre">{'color':</span> <span class="pre">'g',</span> <span class="pre">'linestyle':</span> <span class="pre">'None',</span> <span class="pre">'marker':</span> <span class="pre">'h',</span> <span class="pre">'label':</span> <span class="pre">'teste</span> <span class="pre">legenda2'}</span></code></p></li>
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+<li><p><strong>i</strong> (<em>int</em>) – indice do grafico de entre de todos aqueles que selecionamos para fazer plot</p></li>
+<li><p><strong>numFiles</strong> (<em>int</em>) – numero do ficheiro de valores de entre de todos aqueles que selecionamos para fazer plot</p></li>
+<li><p><strong>numPilares</strong> (<em>int</em>) – em <code class="docutils literal notranslate"><span class="pre">plt.bar()</span></code> é o numero de barras que aparecem numa figura. Default é 4</p></li>
+<li><p><strong>especificacoes</strong> (<em>dict</em>) – especificações que vamos usar usar no grafico</p></li>
+<li><p><strong>fileName</strong> (<em>str</em>) – nome do ficheiro de valores, vamos, possivelmente, usar como nome da plt.figure() que vamos guardar</p></li>
+<li><p><strong>minY</strong> (<em>float</em>) – menor valor dos y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>maxY</strong> (<em>float</em>) – maior valor do y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>bar_empilha</strong> (<em>list of list of int</em>) – cada linha representa um ficheiro; cada coluna representa uma barra do plot.bar(); os valores é o y começamos a fazer plot das barras de um ficheiro</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>numero de figuras os fizemos plot &lt;=&gt; numero de figuras que tem de ser guardadas</p>
+</dd>
+<dt class="field-odd">Retorno</dt>
+<dd class="field-odd"><p>-1 caso existam erros</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.desenho_Barras">
+<code class="descclassname">DoGraf.</code><code class="descname">desenho_Barras</code><span class="sig-paren">(</span><em>especificacoes</em>, <em>rgb</em>, <em>rgbMult</em>, <em>edg</em>, <em>edgMult</em>, <em>numFiles</em>, <em>numPilares</em>, <em>hat</em>, <em>confTipoGrafico</em>, <em>x</em>, <em>i</em>, <em>dicio</em>, <em>bar_empilha</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.desenho_Barras" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>funcao auxiliar para desenhar graficos de Barras</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>especificacoes</strong> (<em>dict</em>) – especificações que vamos usar usar no grafico</p></li>
+<li><p><strong>rgb</strong> (<em>np.zeros</em><em>(</em><em>3</em><em>) </em><em>ou np.ones</em><em>(</em><em>3</em><em>)</em>) – array[3] que contem valores rgb para pintar as barras (valores de 0 - 1)</p></li>
+<li><p><strong>rgbMult</strong> (<em>int</em>) – diz no se vamos incrementar ou diminuir os valores do array rgb</p></li>
+<li><p><strong>edg</strong> (<em>np.zeros</em><em>(</em><em>3</em><em>) </em><em>ou np.ones</em><em>(</em><em>3</em><em>)</em>) – array[3] que contem valores rgb para pintar as linhas das barras (valores de 0 - 1)</p></li>
+<li><p><strong>edgMult</strong> (<em>int</em>) – diz no se vamos incrementar ou diminuir os valores do array edg</p></li>
+<li><p><strong>numFiles</strong> (<em>int</em>) – numero do ficheiro de valores de entre de todos aqueles que selecionamos para fazer plot</p></li>
+<li><p><strong>hat</strong> (<em>list of char</em>) – lista que contem tipos de marcadores para os desenhos nas barras Ex: ``     hat = [“/”, “.”,”*”,”x”, “o”,”//”, “O” ]``</p></li>
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+<li><p><strong>x</strong> (<em>np array</em>) – array com os valores que formam os graficos</p></li>
+<li><p><strong>i</strong> (<em>int</em>) – indice do grafico de entre de todos aqueles que selecionamos para fazer plot</p></li>
+<li><p><strong>dicio</strong> (<em>dict</em>) – especificacoes para o grafico (que normalmente entram em plt.plot()/bar()/hist() ) Ex: <code class="docutils literal notranslate"><span class="pre">d</span> <span class="pre">=</span> <span class="pre">{'color':</span> <span class="pre">'g',</span> <span class="pre">'linestyle':</span> <span class="pre">'None',</span> <span class="pre">'marker':</span> <span class="pre">'h',</span> <span class="pre">'label':</span> <span class="pre">'teste</span> <span class="pre">legenda2'}</span></code></p></li>
+<li><p><strong>bar_empilha</strong> (<em>list of list of int</em>) – cada linha representa um ficheiro; cada coluna representa uma barra do plot.bar(); os valores é o y começamos a fazer plot das barras de um ficheiro</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>devolve 0 se fizemos plot de uma figura OU numero das figuras que fizemos plot (se fizemos plot de mais do que uma)</p>
+</dd>
+<dt class="field-odd">Retorno</dt>
+<dd class="field-odd"><p>-1 caso existam erros</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.desenho_Hist">
+<code class="descclassname">DoGraf.</code><code class="descname">desenho_Hist</code><span class="sig-paren">(</span><em>confTipoGrafico</em>, <em>dicio</em>, <em>especificacoes</em>, <em>x</em>, <em>rgb</em>, <em>rgbMult</em>, <em>edg</em>, <em>edgMult</em>, <em>hat</em>, <em>i</em>, <em>numFiles</em>, <em>minY</em>, <em>maxY</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.desenho_Hist" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>funcao auxiliar para desenhar graficos de Histogramas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+<li><p><strong>dicio</strong> (<em>dict</em>) – especificacoes para o grafico (que normalmente entram em plt.plot()/bar()/hist() ) Ex: <code class="docutils literal notranslate"><span class="pre">d</span> <span class="pre">=</span> <span class="pre">{'color':</span> <span class="pre">'g',</span> <span class="pre">'linestyle':</span> <span class="pre">'None',</span> <span class="pre">'marker':</span> <span class="pre">'h',</span> <span class="pre">'label':</span> <span class="pre">'teste</span> <span class="pre">legenda2'}</span></code></p></li>
+<li><p><strong>especificacoes</strong> (<em>dict</em>) – especificações que vamos usar usar no grafico</p></li>
+<li><p><strong>x</strong> (<em>np array</em>) – array com os valores que formam os graficos</p></li>
+<li><p><strong>rgb</strong> (<em>np.zeros</em><em>(</em><em>3</em><em>) </em><em>ou np.ones</em><em>(</em><em>3</em><em>)</em>) – array[3] que contem valores rgb para pintar as barras (valores de 0 - 1)</p></li>
+<li><p><strong>rgbMult</strong> (<em>int</em>) – diz no se vamos incrementar ou diminuir os valores do array rgb</p></li>
+<li><p><strong>edg</strong> (<em>np.zeros</em><em>(</em><em>3</em><em>) </em><em>ou np.ones</em><em>(</em><em>3</em><em>)</em>) – array[3] que contem valores rgb para pintar as linhas das barras (valores de 0 - 1)</p></li>
+<li><p><strong>edgMult</strong> (<em>int</em>) – diz no se vamos incrementar ou diminuir os valores do array edg</p></li>
+<li><p><strong>hat</strong> (<em>list of char</em>) – lista que contem tipos de marcadores para os desenhos nas barras Ex: ``     hat = [“/”, “.”,”*”,”x”, “o”,”//”, “O” ]``</p></li>
+<li><p><strong>i</strong> (<em>int</em>) – indice do grafico de entre de todos aqueles que selecionamos para fazer plot</p></li>
+<li><p><strong>numFiles</strong> (<em>int</em>) – numero do ficheiro de valores de entre de todos aqueles que selecionamos para fazer plot</p></li>
+<li><p><strong>minY</strong> (<em>float</em>) – menor valor dos y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>maxY</strong> (<em>float</em>) – maior valor do y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>devolve 0 &lt;=&gt; numero das figuras que fizemos plot</p>
+</dd>
+<dt class="field-odd">Retorno</dt>
+<dd class="field-odd"><p>-1 caso existam erros</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.desenho_Linhas">
+<code class="descclassname">DoGraf.</code><code class="descname">desenho_Linhas</code><span class="sig-paren">(</span><em>especificacoes</em>, <em>dicio</em>, <em>x</em>, <em>rgb</em>, <em>rgbMult</em>, <em>numFiles</em>, <em>m</em>, <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.desenho_Linhas" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>funcao auxiliar para desenhar graficos de linhas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>especificacoes</strong> (<em>dict</em>) – especificações que vamos usar usar no grafico</p></li>
+<li><p><strong>dicio</strong> (<em>dict</em>) – especificacoes para o grafico (que normalmente entram em plt.plot()/bar()/hist() ) Ex: <code class="docutils literal notranslate"><span class="pre">d</span> <span class="pre">=</span> <span class="pre">{'color':</span> <span class="pre">'g',</span> <span class="pre">'linestyle':</span> <span class="pre">'None',</span> <span class="pre">'marker':</span> <span class="pre">'h',</span> <span class="pre">'label':</span> <span class="pre">'teste</span> <span class="pre">legenda2'}</span></code></p></li>
+<li><p><strong>x</strong> (<em>np array</em>) – array com os valores que formam os graficos</p></li>
+<li><p><strong>rgb</strong> (<em>np.zeros</em><em>(</em><em>3</em><em>) </em><em>ou np.ones</em><em>(</em><em>3</em><em>)</em>) – array[3] quu contem valores rgb para pintar as linhas (valores de 0 - 1)</p></li>
+<li><p><strong>rgbMult</strong> (<em>int</em>) – diz no se vamos incrementar ou diminuir os valores do array rgb</p></li>
+<li><p><strong>numFiles</strong> (<em>int</em>) – numero do ficheiro de valores de entre de todos aqueles que selecionamos para fazer plot</p></li>
+<li><p><strong>m</strong> (<em>list of char</em>) – lista que conte tipos de marcadores para os pontos do grafico.        Ex: <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">[</span> <span class="pre">'x',</span> <span class="pre">'&lt;',</span> <span class="pre">'o',</span> <span class="pre">'.']</span></code></p></li>
+<li><p><strong>i</strong> (<em>int</em>) – indice do grafico de entre de todos aqueles que selecionamos para fazer plot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>devolve 0 &lt;=&gt; numero das figuras que fizemos plot</p>
+</dd>
+<dt class="field-odd">Retorno</dt>
+<dd class="field-odd"><p>-1 caso existam erros</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.devolvePropriedades">
+<code class="descclassname">DoGraf.</code><code class="descname">devolvePropriedades</code><span class="sig-paren">(</span><em>ficheiros</em>, <em>dirFiles</em>, <em>TemBoool</em>, <em>confTipoGrafico</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.devolvePropriedades" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Função Auxiliar que devolve varias propriedades</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ficheiros</strong> (list of str <strong>OR</strong> dict) – Representa os ficheiros onde estamos a ir buscar valores. Se <code class="docutils literal notranslate"><span class="pre">TemBoll</span> <span class="pre">==</span> <span class="pre">False</span></code> <em>=&gt;</em> <code class="docutils literal notranslate"><span class="pre">ficheiros</span> <span class="pre">=</span> <span class="pre">['timenewformulation2.txt',</span> <span class="pre">'timenewformulation0.txt',</span> <span class="pre">'timenewformulation1.txt']</span></code>. Se <code class="docutils literal notranslate"><span class="pre">TemBool</span> <span class="pre">==</span> <span class="pre">False</span></code>
+<em>=&gt;</em> <code class="docutils literal notranslate"><span class="pre">ficheiros</span> <span class="pre">=</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> <span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}}</span></code></p></li>
+<li><p><strong>maxL</strong> – representa o tamnaho do maior ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return minY</dt>
+<dd class="field-even"><p>menor valor dos y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p>
+</dd>
+<dt class="field-odd">Return maxY</dt>
+<dd class="field-odd"><p>maior valor do y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p>
+</dd>
+<dt class="field-even">Return Freqmax</dt>
+<dd class="field-even"><p>valor que se repete mais vezes  em um ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p>
+</dd>
+<dt class="field-odd">Return ListaDataFicheiros</dt>
+<dd class="field-odd"><p>os valores dos ficheiros numa matrix; Serve para usarmos na <code class="docutils literal notranslate"><span class="pre">preparaArrayEmpilhado()</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.ficheiros_juntos">
+<code class="descclassname">DoGraf.</code><code class="descname">ficheiros_juntos</code><span class="sig-paren">(</span><em>dirImagens</em>, <em>folder_name</em>, <em>tipoGrafico</em>, <em>dicio</em>, <em>bar_empilha</em>, <em>dirFiles</em>, <em>confTipoGrafico</em>, <em>numPilares</em>, <em>minY</em>, <em>maxY</em>, <em>Freqmax</em>, <em>maxL</em>, <em>fig</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.ficheiros_juntos" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Le os ficheiros comos valores. Chama <code class="docutils literal notranslate"><span class="pre">desenho()</span></code> para fazer o plot. Aplica as especifiçaões do grafico presentes no .conf em <code class="docutils literal notranslate"><span class="pre">Specs</span> <span class="pre">=</span> <span class="pre">{}</span></code>.
+Guarda os graficos gerados chamaando <code class="docutils literal notranslate"><span class="pre">guardaGrafico()</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dirImages</strong> (<em>str</em>) – Path para a diretoria onde as pastas dos graficos vao ser guardados</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Nome do diretoria que vamos fazer os graficos Ex: <code class="docutils literal notranslate"><span class="pre">folder_name</span> <span class="pre">=</span> <span class="pre">barrasTeste.2</span></code></p></li>
+<li><p><strong>tipoGrafico</strong> (<em>str</em>) – ajudanos a saber que tipo de grafico vamos criar. Ex: `` tipoGrafico = «Linhas»``</p></li>
+<li><p><strong>dicio</strong> (<em>dict</em>) – especificções do ficheiro. Ex: <code class="docutils literal notranslate"><span class="pre">dicio</span> <span class="pre">=</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> <span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}}</span></code></p></li>
+<li><p><strong>bar_empilha</strong> (<em>list of list of int</em>) – cada linha representa um ficheiro; cada coluna representa uma barra do plot.bar(); os valores é o y começamos a fazer plot das barras de um ficheiro</p></li>
+<li><p><strong>dirFiles</strong> (<em>str</em>) – Path para a diretoria do ficheiros que tem valores dos graficos</p></li>
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+<li><p><strong>numPilares</strong> (<em>int</em>) – em <code class="docutils literal notranslate"><span class="pre">plt.bar()</span></code> é o numero de barras que aparecem numa figura. Default é 4</p></li>
+<li><p><strong>minY</strong> (<em>float</em>) – menor valor dos y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>maxY</strong> (<em>float</em>) – maior valor do y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>Freqmax</strong> (<em>int</em>) – valor que se repete mais vezes em um ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+<li><p><strong>maxL</strong> (<em>int</em>) – representa o tamnaho do maior ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+<li><p><strong>fig</strong> (<em>int</em>) – numero - 1 das <code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code> que vamos criar e consequentemente guardar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>-1 caso existam erros, 0 caso contrario</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.ficheiros_separados">
+<code class="descclassname">DoGraf.</code><code class="descname">ficheiros_separados</code><span class="sig-paren">(</span><em>dirImagens</em>, <em>folder_name</em>, <em>tipoGrafico</em>, <em>dicio</em>, <em>bar_empilha</em>, <em>dirFiles</em>, <em>confTipoGrafico</em>, <em>numPilares</em>, <em>minY</em>, <em>maxY</em>, <em>Freqmax</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.ficheiros_separados" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Le os ficheiros comos valores. Chama <code class="docutils literal notranslate"><span class="pre">desenho()</span></code> para fazer o plot. Aplica as especifiçaões do grafico presentes no .conf em <code class="docutils literal notranslate"><span class="pre">Specs</span> <span class="pre">=</span> <span class="pre">{}</span></code>.
+Guarda os graficos gerados chamaando <code class="docutils literal notranslate"><span class="pre">guardaGrafico()</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dirImages</strong> (<em>str</em>) – Path para a diretoria onde as pastas dos graficos vao ser guardados</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Nome do diretoria que vamos fazer os graficos Ex: <code class="docutils literal notranslate"><span class="pre">folder_name</span> <span class="pre">=</span> <span class="pre">barrasTeste.2</span></code></p></li>
+<li><p><strong>tipoGrafico</strong> (<em>str</em>) – ajudanos a saber que tipo de grafico vamos criar. Ex: `` tipoGrafico = «Linhas»``</p></li>
+<li><p><strong>dicio</strong> (<em>dict</em>) – especificções do ficheiro. Ex: <code class="docutils literal notranslate"><span class="pre">dicio</span> <span class="pre">=</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> <span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}}</span></code></p></li>
+<li><p><strong>bar_empilha</strong> (<em>list of list of int</em>) – cada linha representa um ficheiro; cada coluna representa uma barra do plot.bar(); os valores é o y começamos a fazer plot das barras de um ficheiro</p></li>
+<li><p><strong>dirFiles</strong> (<em>str</em>) – Path para a diretoria do ficheiros que tem valores dos graficos</p></li>
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+<li><p><strong>numPilares</strong> (<em>int</em>) – em <code class="docutils literal notranslate"><span class="pre">plt.bar()</span></code> é o numero de barras que aparecem numa figura. Default é 4</p></li>
+<li><p><strong>minY</strong> (<em>float</em>) – menor valor dos y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>maxY</strong> (<em>float</em>) – maior valor do y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>Freqmax</strong> (<em>int</em>) – valor que se repete mais vezes em um ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>-1 caso existam erros, 0 caso contrario</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.fileNameRepetido">
+<code class="descclassname">DoGraf.</code><code class="descname">fileNameRepetido</code><span class="sig-paren">(</span><em>dire</em>, <em>name</em>, <em>ext</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.fileNameRepetido" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>função de auxilio para descobrir um nome para um ficheiro de uma plt.figure() ja esta em uso</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dir</strong> (<em>str</em>) – path onde vai ficar guardada a plt.figure()</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – nome com que guardamos a plt.figure()</p></li>
+<li><p><strong>ext</strong> (<em>str</em>) – extenção em que guardamos a plt.figure()</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.formatacaoSpecs">
+<code class="descclassname">DoGraf.</code><code class="descname">formatacaoSpecs</code><span class="sig-paren">(</span><em>especificacoes</em>, <em>folder_name</em>, <em>fileName</em>, <em>tipoGrafico</em>, <em>confTipoGrafico</em>, <em>grafs</em>, <em>i</em>, <em>maxY</em>, <em>maxL</em>, <em>Freqmax</em>, <em>numPilares</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.formatacaoSpecs" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>funcao aplicada ao grafico de pois de sair da funcao <code class="docutils literal notranslate"><span class="pre">desenho()</span></code>. Ela faz o parssing 
+da parte das especificacoes do «grafico e aplica - as.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>especificacoes</strong> (<em>dict</em>) – especificações que vamos usar usar no grafico</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – nome da diretoria onde o ficheiro de dados esta</p></li>
+<li><p><strong>fileName</strong> (<em>str</em>) – nome do ficheiro de valores, vamos, possivelmente, usar como nome da plt.figure() que vamos guardar</p></li>
+<li><p><strong>tipoGrafico</strong> (<em>str</em>) – ajudanos a saber que tipo de grafico vamos criar. Ex: `` tipoGrafico = «Linhas»``</p></li>
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+<li><p><strong>grafs</strong> (<em>list of str</em>) – lista que contem os tipos de graficos que conseguimos criar Ex: <code class="docutils literal notranslate"><span class="pre">grafs</span> <span class="pre">=</span> <span class="pre">[&quot;Linhas&quot;,</span> <span class="pre">&quot;Barras&quot;,</span> <span class="pre">&quot;Hist&quot;]</span></code></p></li>
+<li><p><strong>i</strong> (<em>int</em>) – indice do grafico de entre de todos aqueles que selecionamos para fazer plot</p></li>
+<li><p><strong>maxY</strong> (<em>float</em>) – maior valor do y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>Freqmax</strong> (<em>int</em>) – valor que se repete mais vezes em um ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+<li><p><strong>maxL</strong> (<em>int</em>) – representa o tamnaho do maior ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+<li><p><strong>numPilares</strong> (<em>int</em>) – em <code class="docutils literal notranslate"><span class="pre">plt.bar()</span></code> é o numero de barras que aparecem numa figura. Default é 4</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>nome com que o grafico vai ser guardado</p>
+</dd>
+<dt class="field-odd">Retorno</dt>
+<dd class="field-odd"><p>-1 caso existam erros</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.guardaGrafico">
+<code class="descclassname">DoGraf.</code><code class="descname">guardaGrafico</code><span class="sig-paren">(</span><em>confTipoGrafico</em>, <em>dirImagens</em>, <em>folder_name</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.guardaGrafico" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>guarda a plt.figure()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+<li><p><strong>dirImages</strong> (<em>str</em>) – Path para a diretoria onde as pastas dos graficos vao ser guardados</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Nome do diretoria que vamos fazer os graficos Ex: <code class="docutils literal notranslate"><span class="pre">folder_name</span> <span class="pre">=</span> <span class="pre">barrasTeste.2</span></code></p></li>
+<li><p><strong>name</strong> (<em>str</em>) – nome com que o grafico vai ser guardado</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.maior_precisao">
+<code class="descclassname">DoGraf.</code><code class="descname">maior_precisao</code><span class="sig-paren">(</span><em>lista</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.maior_precisao" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Auxilio para yicks…</p>
+<p>Devolve a maior precisao de entre o inicio dos yticks, e o step dos yticks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>lista</strong> (<code class="docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">arange()</span></code>) – lista de valores (x-axis ou y-axis)</p>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>Devolve maior precisao de entre o inicio dos yticks, e o step dos yticks</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.preparaArrayEmpilhado">
+<code class="descclassname">DoGraf.</code><code class="descname">preparaArrayEmpilhado</code><span class="sig-paren">(</span><em>maxL</em>, <em>numFiles</em>, <em>listaDataFicheiros</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.preparaArrayEmpilhado" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>cria uma matrix de ints e floats</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>maxL</strong> (<em>int</em>) – representa o tamnaho do maior ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+<li><p><strong>numFiles</strong> – numero de ficheiros</p></li>
+<li><p><strong>listaDataFicheiros</strong> (<em>matrix of int and/or float</em>) – valores nos ficheiros</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>matrix de valores. cada linha representa um ficheiro; cada coluna representa uma barra do plot.bar(); os valores é o y começamos a fazer plot das barras de um ficheiro</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.resolve_precisao">
+<code class="descclassname">DoGraf.</code><code class="descname">resolve_precisao</code><span class="sig-paren">(</span><em>lista</em>, <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.resolve_precisao" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Resolucaoo para o problema de precisao dos floats</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lista</strong> (<code class="docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">arange()</span></code>) – lista de valores (x-axis ou y-axis)</p></li>
+<li><p><strong>p</strong> – representa a precisao com que todos os ticks vao ficar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Tupe p</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">Retorno</dt>
+<dd class="field-odd"><p>novo array com a precisão arranjada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.tudo_juntos">
+<code class="descclassname">DoGraf.</code><code class="descname">tudo_juntos</code><span class="sig-paren">(</span><em>dirImagens</em>, <em>folder_name</em>, <em>tipoGrafico</em>, <em>bar_empilha</em>, <em>dirFiles</em>, <em>confTipoGrafico</em>, <em>numPilares</em>, <em>minY</em>, <em>maxY</em>, <em>Freqmax</em>, <em>maxL</em>, <em>fig</em>, <em>files</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.tudo_juntos" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Le os ficheiros comos valores. Chama <code class="docutils literal notranslate"><span class="pre">desenho()</span></code> para fazer o plot. Aplica as especifiçaões do grafico presentes no .conf em <code class="docutils literal notranslate"><span class="pre">Specs</span> <span class="pre">=</span> <span class="pre">{}</span></code>.
+Guarda os graficos gerados chamaando <code class="docutils literal notranslate"><span class="pre">guardaGrafico()</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dirImages</strong> (<em>str</em>) – Path para a diretoria onde as pastas dos graficos vao ser guardados</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Nome do diretoria que vamos fazer os graficos Ex: <code class="docutils literal notranslate"><span class="pre">folder_name</span> <span class="pre">=</span> <span class="pre">barrasTeste.2</span></code></p></li>
+<li><p><strong>tipoGrafico</strong> (<em>str</em>) – ajudanos a saber que tipo de grafico vamos criar. Ex: `` tipoGrafico = «Linhas»``</p></li>
+<li><p><strong>bar_empilha</strong> (<em>list of list of int</em>) – cada linha representa um ficheiro; cada coluna representa uma barra do plot.bar(); os valores é o y começamos a fazer plot das barras de um ficheiro</p></li>
+<li><p><strong>dirFiles</strong> (<em>str</em>) – Path para a diretoria do ficheiros que tem valores dos graficos</p></li>
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+<li><p><strong>numPilares</strong> (<em>int</em>) – em <code class="docutils literal notranslate"><span class="pre">plt.bar()</span></code> é o numero de barras que aparecem numa figura. Default é 4</p></li>
+<li><p><strong>minY</strong> (<em>float</em>) – menor valor dos y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>maxY</strong> (<em>float</em>) – maior valor do y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>Freqmax</strong> (<em>int</em>) – valor que se repete mais vezes em um ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+<li><p><strong>maxL</strong> (<em>int</em>) – representa o tamnaho do maior ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+<li><p><strong>fig</strong> (<em>int</em>) – numero - 1 das <code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code> que vamos criar e consequentemente guardar</p></li>
+<li><p><strong>files</strong> (<em>list</em>) – lista dos ficheiros com valores para criar os graficos. Ex: <code class="docutils literal notranslate"><span class="pre">files</span> <span class="pre">=</span> <span class="pre">['timenewformulation2.txt',</span> <span class="pre">'timenewformulation0.txt',</span> <span class="pre">'timenewformulation1.txt']</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>-1 caso existam erros, 0 caso contrario</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.tudo_separados">
+<code class="descclassname">DoGraf.</code><code class="descname">tudo_separados</code><span class="sig-paren">(</span><em>dirImagens</em>, <em>folder_name</em>, <em>tipoGrafico</em>, <em>bar_empilha</em>, <em>dirFiles</em>, <em>confTipoGrafico</em>, <em>numPilares</em>, <em>minY</em>, <em>maxY</em>, <em>Freqmax</em>, <em>files</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.tudo_separados" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Le os ficheiros comos valores. Chama <code class="docutils literal notranslate"><span class="pre">desenho()</span></code> para fazer o plot. Aplica as especifiçaões do grafico presentes no .conf em <code class="docutils literal notranslate"><span class="pre">Specs</span> <span class="pre">=</span> <span class="pre">{}</span></code>.
+Guarda os graficos gerados chamaando <code class="docutils literal notranslate"><span class="pre">guardaGrafico()</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dirImages</strong> (<em>str</em>) – Path para a diretoria onde as pastas dos graficos vao ser guardados</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em>) – Nome do diretoria que vamos fazer os graficos Ex: <code class="docutils literal notranslate"><span class="pre">folder_name</span> <span class="pre">=</span> <span class="pre">barrasTeste.2</span></code></p></li>
+<li><p><strong>tipoGrafico</strong> (<em>str</em>) – ajudanos a saber que tipo de grafico vamos criar. Ex: `` tipoGrafico = «Linhas»``</p></li>
+<li><p><strong>bar_empilha</strong> (<em>list of list of int</em>) – cada linha representa um ficheiro; cada coluna representa uma barra do plot.bar(); os valores é o y começamos a fazer plot das barras de um ficheiro</p></li>
+<li><p><strong>dirFiles</strong> (<em>str</em>) – Path para a diretoria do ficheiros que tem valores dos graficos</p></li>
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+<li><p><strong>numPilares</strong> (<em>int</em>) – em <code class="docutils literal notranslate"><span class="pre">plt.bar()</span></code> é o numero de barras que aparecem numa figura. Default é 4</p></li>
+<li><p><strong>minY</strong> (<em>float</em>) – menor valor dos y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>maxY</strong> (<em>float</em>) – maior valor do y de entre todos os ficheiros que vamos fazer plot dentro de uma  diretoria</p></li>
+<li><p><strong>Freqmax</strong> (<em>int</em>) – valor que se repete mais vezes em um ficheiro de entre todos os ficheiros que vamos fazer plot dentro de uma diretoria</p></li>
+<li><p><strong>files</strong> (<em>list</em>) – lista dos ficheiros com valores para criar os graficos. Ex: <code class="docutils literal notranslate"><span class="pre">files</span> <span class="pre">=</span> <span class="pre">['timenewformulation2.txt',</span> <span class="pre">'timenewformulation0.txt',</span> <span class="pre">'timenewformulation1.txt']</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p>-1 caso existam erros, 0 caso contrario</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DoGraf.unirSpecs">
+<code class="descclassname">DoGraf.</code><code class="descname">unirSpecs</code><span class="sig-paren">(</span><em>especificacoes</em>, <em>confTipoGrafico</em><span class="sig-paren">)</span><a class="headerlink" href="#DoGraf.unirSpecs" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Une as Specs especificas do ficheiro com as Gerais (As especificações dos ficheiros tem + prioridade)
+«especificacoes» sao as Specs individuais dos files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>especificacoes</strong> (<em>dict</em>) – especificações individuais dos ficheiros</p></li>
+<li><p><strong>confTipoGrafico</strong> (<em>dict</em>) – secçao do .conf que corresponde uma das nossas diretorias que 
+tem informaçao para gerar graficos. Ex: <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span> <span class="pre">=</span> <span class="pre">{'separa':</span> <span class="pre">'True',</span> <span class="pre">'Ficheiros':</span> <span class="pre">{'foo1':</span> <span class="pre">{'bins':</span> <span class="pre">'range(4)',</span> <span class="pre">'Specs':</span> <span class="pre">{}},</span> 
+<span class="pre">'foo2':</span> <span class="pre">{'Specs':</span> <span class="pre">{'bins':</span> <span class="pre">['range(4',</span> <span class="pre">'12)']}},</span> <span class="pre">'foo3':</span> <span class="pre">{'Specs':</span> <span class="pre">{}}},</span> <span class="pre">'Specs':</span> <span class="pre">{'value':</span> <span class="pre">{'precisao':</span> 
+<span class="pre">'3',</span> <span class="pre">'fontsize':</span> <span class="pre">'7'},</span> <span class="pre">'legend':</span> <span class="pre">{'loc':</span> <span class="pre">'upper</span> <span class="pre">left'}}}</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">especificacoes</span></code>, caso nao existam <code class="docutils literal notranslate"><span class="pre">Specs</span></code> em <code class="docutils literal notranslate"><span class="pre">confTipoGrafico</span></code>.
+<code class="docutils literal notranslate"><span class="pre">aux</span></code>, sendo <code class="docutils literal notranslate"><span class="pre">aux</span></code> uma copia das Specs Gerais que foi atualizada com as especificações do grafico</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>Esta Página</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/DoGraf.rst.txt"
+            rel="nofollow">Exibir Fonte</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Pesquisa rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentação projetosfinx hj</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, rik.
+      Criado utilizando <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+    </div>
+  </body>
+</html>
